@@ -1,0 +1,21 @@
+#offcanvas_dark {
+    background: #18191A;
+    color: #E0E0E0
+}
+
+#offcanvas_light {
+    background-color: #ffffff;
+    color: #18191A;
+}
+
+#cross_icon:hover {
+    cursor: pointer;
+}
+
+#second_row {
+    margin-top: 5%;
+}
+
+#save_btn {
+    margin-top: 10%;
+}

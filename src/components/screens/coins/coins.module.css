@@ -1,0 +1,43 @@
+#title_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#results_container {
+    margin: 1%;
+}
+
+#scroll_top_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media only screen and (min-width: 320px) {
+    .image {
+      width: 100px;
+      height: 100px;
+    }
+    #container {
+      padding: 15% 0 5% 0;
+    }
+  }
+  @media only screen and (min-width: 481px) {
+    .image {
+      width: 125px;
+      height: 125px;
+    }
+    #container {
+      padding: 10% 0 5% 0;
+    }
+  }
+  @media only screen and (min-width: 769px) {
+    .image {
+      width: 150px;
+      height: 150px;
+    }
+    #container {
+      padding: 7% 0 7% 0;
+    }
+  }

@@ -1,0 +1,49 @@
+.link_light {
+    color: #18191A;
+    transition: 0.2s ease-in-out;
+    text-decoration: none;
+}
+
+.link_light:hover {
+    color: #707070;
+    cursor: pointer;
+}
+
+.link_dark {
+    color: #b4b4b4;
+    transition: 0.2s ease-in-out;
+    text-decoration: none;
+}
+
+.link_dark:hover {
+    color: #a0a0a0;
+    cursor: pointer;
+}
+
+@media only screen and (min-width: 320px) {
+    .link_light {
+        margin: 0 2% 0 2%;
+    }
+
+    .link_dark {
+        margin: 0 2% 0 2%;
+    }
+
+}
+@media only screen and (min-width: 481px) {
+    .link_light {
+        margin: 0 1% 0 1%;
+    }
+    .link_dark {
+        margin: 0 1% 0 1%;
+    }
+
+}
+@media only screen and (min-width: 769px) {
+    .link_light {
+        margin: 0 0.7% 0 0.7%;
+    }
+    .link_dark {
+        margin: 0 0.7% 0 0.7%;
+    }
+}
