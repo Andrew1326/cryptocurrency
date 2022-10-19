@@ -24,7 +24,7 @@ export default function Coins({fiatCurrency, coinsUrl}) {
 
     return (
         <div id={styles.container}>
-            <div id={styles.title_container} data-aos="fade-up" data-aos-duration="700">
+            <div id={styles.title_container} data-aos="fade-up" data-aos-duration="1200">
                 <img className={styles.image} src={increase} alt='increase' />
                 <h1>Most popular coins stats</h1>
                 <img className={styles.image} src={decrease} alt='decrease' />

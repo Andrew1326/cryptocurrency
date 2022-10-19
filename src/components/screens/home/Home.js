@@ -11,15 +11,15 @@ export default function Home() {
     const navigate = useNavigate()
 
     const images = [
-        {src: btn_coin, alt: 'btn coin', duration: '400'},
-        {src: eth_coin, alt: 'eth coin', duration: '800'},
-        {src: sol_coin, alt: 'sol coin', duration: '1200'}
+        {src: btn_coin, alt: 'btn coin', duration: '700'},
+        {src: eth_coin, alt: 'eth coin', duration: '1400'},
+        {src: sol_coin, alt: 'sol coin', duration: '2100'}
     ]
 
     return (
         <>
         <div id={styles.container}>
-            <h1  data-aos="zoom-in" data-aos-duration="800">Welcome, to app CoinsPlace.<br />In this app you can easily find information about cryptocurrency</h1>
+            <h1  data-aos="zoom-in" data-aos-duration="1200">Welcome, to app CoinsPlace.<br />In this app you can easily find information about cryptocurrency</h1>
             <div id={styles.images_container}>
                 {
                     images.map((el, i) => <img data-aos="fade-down-right" data-aos-duration={el.duration} className={styles.image} key={i} src={el.src} alt={el.alt} />)

@@ -21,7 +21,7 @@ export default function News({newsUrl}) {
     
     return (
         <div id={styles.container}>
-            <div id={styles.title_container} data-aos="fade-up" data-aos-duration="700">
+            <div id={styles.title_container} data-aos="fade-up" data-aos-duration="1200">
                 <h1>All types of news</h1>
                 <img id={styles.image} src={stats} alt='stats' />
             </div>
