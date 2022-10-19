@@ -30,7 +30,7 @@ export default function CoinsTable({data, value, theme, fiatCurrency}) {
                     {
                         data.map((coin, index) => <tr key={index}>
                             <td>{coin.rank}</td>
-                            <td><img style={{width: '24px', height: '24px'}} src={coin.icon} alt="icon" />&nbsp;&nbsp;{coin.name}&nbsp;&nbsp;{coin.symbol}</td>
+                            <td><img loading='lazy' style={{width: '24px', height: '24px'}} src={coin.icon} alt="icon" />&nbsp;&nbsp;{coin.name}&nbsp;&nbsp;{coin.symbol}</td>
                             <td>{`${currencySymbol}${coin.price.toFixed(2)}`}</td>
                             <td>{coin.priceBtc.toFixed(8)}</td>
                             <td style={{color: coin.priceChange1h > 0 ? '#32D25A' : '#FF3535'}}>{coin.priceChange1h}%</td>

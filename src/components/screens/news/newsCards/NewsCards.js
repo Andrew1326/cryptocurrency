@@ -16,7 +16,7 @@ export default function NewsCards({data, theme}) {
         <div id={styles.news_cards_container}>
                 {
                 data.map(el => <Card className={styles.card} bg={theme} key={el.id}>
-                    <Card.Img variant="top" src={el.imgURL} />
+                    <Card.Img variant="top" loading='lazy' src={el.imgURL} />
                     <Card.Header>
                         <Card.Title>{el.title}</Card.Title>
                     </Card.Header>
