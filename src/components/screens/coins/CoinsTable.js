@@ -1,16 +1,25 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Table } from 'react-bootstrap';
 import { fiats } from '../../../components/navBar/offCanvas/formData';
+import { useSettings } from '../../../contexts/SettingsContext';
+import { useTheme } from '../../../contexts/ThemeContext';
 
-export default function CoinsTable({data, value, theme, fiatCurrency}) {
+export default function CoinsTable({data, value}) {
 
-    // str to lower case
+    const theme = useTheme()
+    const { fiatCurrency } = useSettings()
+
+    //* str to lower case
     const toLower = str => str.toLowerCase();
 
-    // filtering coins
-    data = data.coins.filter(el => toLower(el.name).includes(toLower(value)) || toLower(el.symbol).includes(toLower(value)));
+    //* filtering coins
+    const filteredData = useMemo(() => {
+        return data.coins.filter(el => toLower(el.name).includes(toLower(value)) || toLower(el.symbol).includes(toLower(value)))
+        
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [value]);
 
-    // currency symbol
+    //* currency symbol
     const currencySymbol = fiats.find(el => el.name === fiatCurrency).symbol;
 
     return (
@@ -28,7 +37,7 @@ export default function CoinsTable({data, value, theme, fiatCurrency}) {
                 </thead>
                 <tbody>
                     {
-                        data.map((coin, index) => <tr key={index}>
+                        filteredData.map((coin, index) => <tr key={index}>
                             <td>{coin.rank}</td>
                             <td><img loading='lazy' style={{width: '24px', height: '24px'}} src={coin.icon} alt="icon" />&nbsp;&nbsp;{coin.name}&nbsp;&nbsp;{coin.symbol}</td>
                             <td>{`${currencySymbol}${coin.price.toFixed(2)}`}</td>

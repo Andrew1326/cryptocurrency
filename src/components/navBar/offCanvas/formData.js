@@ -1,5 +1,9 @@
 export const fiats = [
     {
+      "name": "USD",
+      "symbol": "$"
+    },
+    {
       "name": "AUD",
       "symbol": "$"
     },
@@ -126,12 +130,8 @@ export const fiats = [
     {
       "name": "ZAR",
       "symbol": "R"
-    },
-    {
-      "name": "USD",
-      "symbol": "$"
     }
   ];
 
-export const newsTypes = ['trending', 'latest', 'bullish', 'bearish'];
-export const limits = [25, 50, 100, 'no limit'];
+export const newsTypes = ['latest', 'trending', 'bullish', 'bearish'];
+export const limits = ['no limit', 25, 50, 100];

@@ -3,21 +3,24 @@ import styles from './news.module.css';
 import ScrollToTop from '../../shared/scrollToTop/ScrollToTop';
 import stats from '../../../images/stats.png';
 import NewsCards from './newsCards/NewsCards';
-import { useTheme } from '../../../contexts/ThemeContext';
-import { useFetch } from '../../../hooks/useFetch';
-import CustomAlert from '../../shared/customAlert/customAlert';
+import useFetch from '../../../hooks/useFetch';
 import Loader from '../../shared/loader/Loader';
-import { REQUEST_FAILED_HEADING, REQUEST_FAILED_TEXT } from '../../../constants';
+import { ErrorAlert } from '../../shared/alerts/Alerts';
+import { useSettings } from '../../../contexts/SettingsContext';
+import { createUrl } from '../../../App';
+import { NEWS_URL } from '../../../constants';
 
-export default function News({newsUrl}) {
+const News = () => {
 
-    const { data, err } = useFetch(newsUrl)
+    const { newsLimit, newsType } = useSettings()
 
-    const theme = useTheme()
+    const newsUrl = createUrl(`${NEWS_URL}/${newsType}`, {
+        limit: newsLimit
+    });
 
-    // props
-    const newsCardsProps = {data, theme};
-    const customAlertProps = {heading: REQUEST_FAILED_HEADING, text: REQUEST_FAILED_TEXT};
+    const { data, err } = useFetch(newsUrl, [newsType, newsLimit])
+
+    const newsCardsProps = {data};
     
     return (
         <div id={styles.container}>
@@ -33,10 +36,12 @@ export default function News({newsUrl}) {
                 </div>
                 </>
                 :
-                err ? <CustomAlert {...customAlertProps} />
+                err ? <ErrorAlert />
                 :
                 <Loader />
             }
         </div>
     )
 }
+
+export default News

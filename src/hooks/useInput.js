@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
 
-export function useInput() {
+const useInput = () => {
     const [value, setValue] = useState('');
 
     const Input = <Form.Control 
@@ -13,3 +13,5 @@ export function useInput() {
 
     return [value, Input]
 }
+
+export default useInput

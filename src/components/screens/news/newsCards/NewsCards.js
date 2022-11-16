@@ -1,13 +1,16 @@
 import React from 'react';
 import styles from './newsCards.module.css';
 import { Card } from 'react-bootstrap';
+import { useTheme } from '../../../../contexts/ThemeContext';
 
-export default function NewsCards({data, theme}) {
+const NewsCards = ({ data }) => {
 
-    // filtering news
+    const theme = useTheme()
+
+    //* filtering news
     data = data.news.filter(el => !el.source.includes('Reddit'));
 
-    //markup
+    //* markup
     const createMarkup = html => {
         return {__html: html}
     };
@@ -31,3 +34,5 @@ export default function NewsCards({data, theme}) {
         </div>
     )
 }
+
+export default NewsCards

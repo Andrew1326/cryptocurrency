@@ -4,7 +4,7 @@ import bitcoin from '../../../images/bitcoin.png';
 import styles from './notFound.module.css';
 import { useNavigate } from 'react-router-dom';
 
-export default function NotFound() {
+const NotFound = () => {
 
     const navigate = useNavigate()
 
@@ -24,3 +24,5 @@ export default function NotFound() {
         </>
     )
 }
+
+export default NotFound

@@ -6,7 +6,7 @@ import sol_coin from '../../../images/sol_coin.png';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
-export default function Home() {
+const Home = () => {
 
     const navigate = useNavigate()
 
@@ -32,3 +32,5 @@ export default function Home() {
         </>
     )
 }
+
+export default Home

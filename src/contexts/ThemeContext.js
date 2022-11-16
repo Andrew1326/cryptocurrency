@@ -1,19 +1,19 @@
 import { createContext, useContext, useEffect }  from 'react';
-import { useSessionStorage } from '../hooks/useSessionStorage';
+import useSessionStorage from '../hooks/useSessionStorage';
 
-// contexts
+//* contexts
 const ThemeContext = createContext();
 const ThemeUpdateContext = createContext();
 
-// hooks
+//* hooks
 export const useTheme = () => useContext(ThemeContext);
 export const useThemeUpdate = () => useContext(ThemeUpdateContext);
 
-// provider
-export default function ThemeProvider({children}) {
+//* provider
+const ThemeProvider = ({ children }) => {
     const [theme, setTheme] = useSessionStorage('theme', 'dark')
 
-    // changing document colors
+    //* changing document colors
     useEffect(() => {
         if (theme === 'dark') {
             document.body.style.color = '#E0E0E0';
@@ -25,7 +25,7 @@ export default function ThemeProvider({children}) {
 
     }, [theme])
 
-    // theme changing
+    //* theme changing
     const toggleTheme = () => setTheme(prev => prev === 'dark' ? 'light' : 'dark');
 
     return (
@@ -36,3 +36,5 @@ export default function ThemeProvider({children}) {
         </ThemeContext.Provider>
     )
 }
+
+export default ThemeProvider

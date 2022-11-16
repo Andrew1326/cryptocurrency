@@ -8,22 +8,22 @@ import { useTheme, useThemeUpdate } from '../../contexts/ThemeContext';
 import { ReactComponent as SunIcon } from '../../images/sun.svg';
 import { ReactComponent as MoonIcon } from '../../images/moon.svg';
 
-export default function NavBar(props) {
+const NavBar = () => {
 
     const theme = useTheme()
     const themeUpdate = useThemeUpdate()
     
     const [show, setShow] = useState(false)
 
-    // offcanvas show && close
+    //* offcanvas show && close
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
 
-    // theme changing
+    //* theme changing
     const handleThemeUpdate = () => themeUpdate();
  
-    // props
-    const customOffcanvasProps = {show, handleClose, theme, ...props}
+    //* props
+    const customOffcanvasProps = {show, handleClose}
 
     return (
         <Navbar fixed='top' collapseOnSelect expand="lg" bg={theme} variant={theme} id={styles.navbar}>
@@ -44,3 +44,5 @@ export default function NavBar(props) {
         </Navbar>
     )
 }
+
+export default NavBar

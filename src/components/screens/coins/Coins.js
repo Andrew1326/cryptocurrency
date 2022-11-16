@@ -1,26 +1,33 @@
-import React from "react";
+import React, { useDeferredValue } from "react";
 import CoinsTable from "./CoinsTable";
 import styles from './coins.module.css';
 import ScrollToTop from "../../shared/scrollToTop/ScrollToTop";
 import increase from '../../../images/increase.png';
 import decrease from '../../../images/decrease.png';
-import { useTheme } from '../../../contexts/ThemeContext';
-import { useFetch } from "../../../hooks/useFetch";
-import { useInput } from "../../../hooks/useInput";
+import useFetch from "../../../hooks/useFetch";
+import useInput from "../../../hooks/useInput";
 import Loader from '../../shared/loader/Loader';
-import CustomAlert from '../../shared/customAlert/customAlert'
-import { REQUEST_FAILED_HEADING, REQUEST_FAILED_TEXT } from '../../../constants';
+import { ErrorAlert } from '../../shared/alerts/Alerts';
+import { createUrl } from "../../../App";
+import { COINS_URL } from "../../../constants";
+import { useSettings } from "../../../contexts/SettingsContext";
 
-export default function Coins({fiatCurrency, coinsUrl}) {
+const Coins = () => {
 
-    const { data, err } = useFetch(coinsUrl)
+    const { fiatCurrency, coinsLimit } = useSettings()
+
+    const coinsUrl = createUrl(COINS_URL, { 
+        currency: fiatCurrency,
+        limit: coinsLimit
+    });
+
+    const { data, err } = useFetch(coinsUrl, [fiatCurrency, coinsLimit])
 
     const [value, Input] = useInput()
-    const theme = useTheme()
+    const deferredValue = useDeferredValue(value)
 
-    // props
-    const coinsTableProps = {data, value, theme, fiatCurrency};
-    const customAlertProps = {heading: REQUEST_FAILED_HEADING, text: REQUEST_FAILED_TEXT};
+    //* props
+    const coinsTableProps = {data, value: deferredValue};
 
     return (
         <div id={styles.container}>
@@ -40,10 +47,12 @@ export default function Coins({fiatCurrency, coinsUrl}) {
                 </div>
                 </>
                 :
-                err ? <CustomAlert {...customAlertProps} />
+                err ? <ErrorAlert />
                 :
                 <Loader />
             }    
         </div>
     )
 }
+
+export default Coins

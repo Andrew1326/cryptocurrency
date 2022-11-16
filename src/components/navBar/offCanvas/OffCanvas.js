@@ -3,42 +3,18 @@ import { Form, Offcanvas, Row, Col, Button } from 'react-bootstrap';
 import { fiats, limits, newsTypes } from './formData';
 import styles from './offCanvas.module.css';
 import { useForm } from 'react-hook-form';
-import { COINS_URL, NEWS_URL } from '../../../constants';
 import CrossIcon from './CrossIcon';
+import { useTheme } from '../../../contexts/ThemeContext';
+import { useSettingsUpdate } from '../../../contexts/SettingsContext';
 
-export default function OffCanvas({show, handleClose, theme, createUrl, setFiatCurrency, setCoinsLimit, setNewsType, setNewsLimit, setCoinsUrl, setNewsUrl}) {
+const OffCanvas = ({ show, handleClose }) => {
 
-    // currency => newsType => coinsLimit => newsLimit
-
+    const updateSetting = useSettingsUpdate()
+    const theme = useTheme()
     const { register, handleSubmit } = useForm();
 
-    // form submit
-    const onSubmit = data => {
-
-        // change data
-        data = Object.fromEntries(Object.entries(data).map(el => el[1] === 'no limit' ? [el[0], null] : el));
-
-        // coins url
-        const coinsUrl = createUrl(COINS_URL, {
-            limit: data.coinsLimit,
-            currency: data.fiatCurrency
-        });
-
-        // news url
-        const newsUrl = createUrl(`${NEWS_URL}/${data.newsType}`, {
-            limit: data.newsLimit
-        });
-
-        // set session storage states
-        setFiatCurrency(data.fiatCurrency);
-        setCoinsLimit(data.coinsLimit);
-        setNewsType(data.newsType);
-        setNewsLimit(data.newsLimit);
-
-        // set urls
-        setCoinsUrl(coinsUrl);
-        setNewsUrl(newsUrl)
-    };
+    //* form submit
+    const onSubmit = data => updateSetting(data);
 
     return (
         <Offcanvas id={theme === 'dark' ? styles.offcanvas_dark : styles.offcanvas_light} show={show} onHide={handleClose}>
@@ -102,3 +78,5 @@ export default function OffCanvas({show, handleClose, theme, createUrl, setFiatC
         </Offcanvas>
     )
 }
+
+export default OffCanvas
