@@ -1,10 +1,9 @@
 import React, { useMemo } from 'react';
 import { Table } from 'react-bootstrap';
-import { fiats } from '../../../components/navBar/offCanvas/formData';
 import { useSettings } from '../../../contexts/SettingsContext';
 import { useTheme } from '../../../contexts/ThemeContext';
 
-export default function CoinsTable({data, value}) {
+export default function CoinsTable({data, value, fiatCurrencies}) {
 
     const theme = useTheme()
     const { fiatCurrency } = useSettings()
@@ -20,7 +19,7 @@ export default function CoinsTable({data, value}) {
     }, [value]);
 
     //* currency symbol
-    const currencySymbol = fiats.find(el => el.name === fiatCurrency).symbol;
+    const currencySymbol = fiatCurrencies?.find(el => el.name === fiatCurrency).symbol;
 
     return (
             <Table responsive striped bordered hover variant={theme}>

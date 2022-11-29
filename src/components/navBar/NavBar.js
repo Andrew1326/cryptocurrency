@@ -8,7 +8,7 @@ import { useTheme, useThemeUpdate } from '../../contexts/ThemeContext';
 import { ReactComponent as SunIcon } from '../../images/sun.svg';
 import { ReactComponent as MoonIcon } from '../../images/moon.svg';
 
-const NavBar = () => {
+const NavBar = ({ fiatCurrencies }) => {
 
     const theme = useTheme()
     const themeUpdate = useThemeUpdate()
@@ -23,7 +23,7 @@ const NavBar = () => {
     const handleThemeUpdate = () => themeUpdate();
  
     //* props
-    const customOffcanvasProps = {show, handleClose}
+    const customOffcanvasProps = {show, handleClose, fiatCurrencies}
 
     return (
         <Navbar fixed='top' collapseOnSelect expand="lg" bg={theme} variant={theme} id={styles.navbar}>

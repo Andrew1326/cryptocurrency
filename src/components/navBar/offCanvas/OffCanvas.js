@@ -1,17 +1,20 @@
 import React from 'react';
 import { Form, Offcanvas, Row, Col, Button } from 'react-bootstrap';
-import { fiats, limits, newsTypes } from './formData';
 import styles from './offCanvas.module.css';
 import { useForm } from 'react-hook-form';
 import CrossIcon from './CrossIcon';
 import { useTheme } from '../../../contexts/ThemeContext';
 import { useSettingsUpdate } from '../../../contexts/SettingsContext';
 
-const OffCanvas = ({ show, handleClose }) => {
+const OffCanvas = ({ show, handleClose, fiatCurrencies }) => {
 
     const updateSetting = useSettingsUpdate()
     const theme = useTheme()
     const { register, handleSubmit } = useForm();
+
+    //* form data
+    const newsTypes = ['latest', 'trending', 'bullish', 'bearish', 'handpicked'];
+    const limits = ['no limit', 25, 50, 100];
 
     //* form submit
     const onSubmit = data => updateSetting(data);
@@ -32,7 +35,7 @@ const OffCanvas = ({ show, handleClose }) => {
                             <Form.Label>Fiat currency</Form.Label>
                             <Form.Select {...register('fiatCurrency')}>
                                 {
-                                    fiats.map((el, i) => <option key={i} value={el.name}>{el.name}</option>)
+                                    fiatCurrencies?.map((el, i) => <option key={i} value={el.name}>{el.name}</option>)
                                 }
                             </Form.Select>
                         </Form.Group>

@@ -12,7 +12,7 @@ import { createUrl } from "../../../App";
 import { COINS_URL } from "../../../constants";
 import { useSettings } from "../../../contexts/SettingsContext";
 
-const Coins = () => {
+const Coins = ({ fiatCurrencies }) => {
 
     const { fiatCurrency, coinsLimit } = useSettings()
 
@@ -27,7 +27,7 @@ const Coins = () => {
     const deferredValue = useDeferredValue(value)
 
     //* props
-    const coinsTableProps = {data, value: deferredValue};
+    const coinsTableProps = {data, value: deferredValue, fiatCurrencies};
 
     return (
         <div id={styles.container}>

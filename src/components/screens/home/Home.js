@@ -17,7 +17,6 @@ const Home = () => {
     ]
 
     return (
-        <>
         <div id={styles.container}>
             <h1  data-aos="zoom-in" data-aos-duration="1200">Welcome, to app CoinsPlace.<br />In this app you can easily find information about cryptocurrency</h1>
             <div id={styles.images_container}>
@@ -29,7 +28,6 @@ const Home = () => {
                 <Button size="lg" onClick={() => navigate('/coins')}>view coins</Button>
             </div>
         </div>
-        </>
     )
 }
 

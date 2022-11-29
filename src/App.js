@@ -7,6 +7,8 @@ import NavBar from './components/navBar/NavBar';
 import ThemeProvider from './contexts/ThemeContext';
 import { OfflineAlert } from './components/shared/alerts/Alerts';
 import SettingsProvider from './contexts/SettingsContext';
+import useFetch from './hooks/useFetch';
+import { ErrorAlert } from '../src/components/shared/alerts/Alerts'
 
 const Home = lazy(() => import('./components/screens/home/Home'));
 const Coins = lazy(() => import('./components/screens/coins/Coins'));
@@ -31,19 +33,25 @@ export default function App() {
     AOS.init({ duration: 2000 });
   }, [])
 
+  //* fetching fiats
+  const { data: fiatCurrencies, error: fiatCurrenciesError } = useFetch('https://api.coinstats.app/public/v1/fiats')
+
   //* routes
   const routes = [
     {element: <Home />, path: '/'},
-    {element: <Coins />, path: 'coins'},
+    {element: <Coins fiatCurrencies={fiatCurrencies} />, path: 'coins'},
     {element: <News />, path: 'news'},
     {element: <NotFound />, path: '*'},
   ]
+
+  //* props
+  const navbarProps = { fiatCurrencies }
 
   return (
     <Router>
       <ThemeProvider>
         <SettingsProvider>
-        <NavBar />
+        <NavBar {...navbarProps} />
         {
         !navigator.onLine ? <OfflineAlert />
         :
@@ -53,6 +61,9 @@ export default function App() {
             routes.map((el, i) => <Route key={i} path={el.path} element={el.element} />)
           }
         </Routes>
+        {
+          fiatCurrenciesError && <ErrorAlert />
+        }
         </Suspense>
         }
         </SettingsProvider>
