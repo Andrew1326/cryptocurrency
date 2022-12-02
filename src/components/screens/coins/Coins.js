@@ -1,7 +1,7 @@
 import React, { useDeferredValue } from "react";
-import CoinsTable from "./CoinsTable";
+import CoinsTable from "../../CoinsTable";
 import styles from './coins.module.css';
-import ScrollToTop from "../../shared/scrollToTop/ScrollToTop";
+import ScrollToTop from "../../shared/ScrollToTop";
 import increase from '../../../images/increase.png';
 import decrease from '../../../images/decrease.png';
 import useFetch from "../../../hooks/useFetch";
@@ -21,6 +21,7 @@ const Coins = ({ fiatCurrencies }) => {
         limit: coinsLimit
     });
 
+    //* fetching coins
     const { data, err } = useFetch(coinsUrl, [fiatCurrency, coinsLimit])
 
     const [value, Input] = useInput()

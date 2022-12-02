@@ -3,8 +3,8 @@ import { Form, Offcanvas, Row, Col, Button } from 'react-bootstrap';
 import styles from './offCanvas.module.css';
 import { useForm } from 'react-hook-form';
 import CrossIcon from './CrossIcon';
-import { useTheme } from '../../../contexts/ThemeContext';
-import { useSettingsUpdate } from '../../../contexts/SettingsContext';
+import { useTheme } from '../../contexts/ThemeContext';
+import { useSettingsUpdate } from '../../contexts/SettingsContext';
 
 const OffCanvas = ({ show, handleClose, fiatCurrencies }) => {
 

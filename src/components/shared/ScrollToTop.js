@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
-import { ReactComponent as ScrollIcon } from '../../../images/scroll_icon.svg';
+import { ReactComponent as ScrollIcon } from '../../images/scroll_icon.svg';
 
 const ScrollToTop = () => {
 

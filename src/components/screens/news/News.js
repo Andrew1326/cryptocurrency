@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './news.module.css';
-import ScrollToTop from '../../shared/scrollToTop/ScrollToTop';
+import ScrollToTop from '../../shared/ScrollToTop';
 import stats from '../../../images/stats.png';
-import NewsCards from './newsCards/NewsCards';
+import NewsCard from '../../newsCard/NewsCard';
 import useFetch from '../../../hooks/useFetch';
 import Loader from '../../shared/loader/Loader';
 import { ErrorAlert } from '../../shared/alerts/Alerts';
@@ -18,9 +18,8 @@ const News = () => {
         limit: newsLimit
     });
 
+    //* fetching news
     const { data, err } = useFetch(newsUrl, [newsType, newsLimit])
-
-    const newsCardsProps = {data};
     
     return (
         <div id={styles.container}>
@@ -30,7 +29,11 @@ const News = () => {
             </div>
             {
                 data ? <>
-                <NewsCards {...newsCardsProps} />
+                <div id={styles.news_cards_container}>
+                    {
+                        data.news.map(el => <NewsCard data={el} key={el.id} />)
+                    }
+                </div>
                 <div id={styles.scroll_top_container}>
                     <ScrollToTop />    
                 </div>

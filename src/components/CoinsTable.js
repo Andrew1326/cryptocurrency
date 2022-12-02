@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
 import { Table } from 'react-bootstrap';
-import { useSettings } from '../../../contexts/SettingsContext';
-import { useTheme } from '../../../contexts/ThemeContext';
+import { useSettings } from '../contexts/SettingsContext';
+import { useTheme } from '../contexts/ThemeContext';
 
-export default function CoinsTable({data, value, fiatCurrencies}) {
+const CoinsTable = ({data, value, fiatCurrencies}) => {
 
     const theme = useTheme()
     const { fiatCurrency } = useSettings()
@@ -50,3 +50,5 @@ export default function CoinsTable({data, value, fiatCurrencies}) {
             </Table>
     )
 }
+
+export default CoinsTable
